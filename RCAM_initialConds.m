@@ -20,7 +20,7 @@ u = [0;
     0.08;
     0.08];
 
-t_final = 5;
+t_final = 3600;
 
 %% run model
 out = sim('RCAM_simulation.slx')
@@ -28,25 +28,21 @@ out = sim('RCAM_simulation.slx')
 %% plot results
 t = out.SimX.Time;
 
-u = out.SimU.Data(:)
-x = out.SimX.Data
-
-
 figure
 grid on
-for i = 1:size(u)
+for i = 1:5
     subplot(height(u), 1, i)
-    plot(t,u(i), "b.")
+    plot(t,out.SimU.Data(:,i), "b.")
     title(['u' num2str(i)])
 end
 
-for i = 1:width(x)
+for i = 1:9
     if mod(i,3) == 1
         figure
         grid on
     end
 
     subplot(3, 1, mod(i-1,3)+1)
-    plot(t,x(:,i), 'r.')
+    plot(t,out.SimX.Data(:,i), 'r.')
     title(['x' num2str(i)])
 end
