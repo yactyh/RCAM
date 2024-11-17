@@ -7,4 +7,4 @@ Following Christopher Lum's tutorials:
 [Simulink Implementation](https://www.youtube.com/watch?v=m5sEln5bWuM)
 
 ## Todos:
-- ...
+- Output just straight up doesn't match
