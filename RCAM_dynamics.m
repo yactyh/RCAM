@@ -12,7 +12,7 @@ lt = 24.8;      % m, distance of ACs between tail and body
 S = 260;        % m^2, wing planform area
 St = 64;        % m^2, tail planform area
 
-xCG = [0.23*cbar; 0; 0.10*cbar];      % m, CG position in 
+xCG = [0.23*cbar; 0; 0.10*cbar];       % m, CG position in 
 xAC = [0.12*cbar; 0; 0];               % m, AC position
 
 % ----- ENGINE LOCATIONS -----
@@ -76,11 +76,11 @@ FA_b = RotY * FA_s;                 % body axis
 % ----- AERODYNAMIC MOMENT COEFFS ABOUT AC -----
 eta = [-1.4*beta; 
        -0.59 - (3.1*St*lt)/(S*cbar) * (alpha-epsilon);
-       (1-alpha*180/(15*pi)) * beta];
+       (1 - alpha*(180/(15*pi))) * beta];
 
-CM_omega = (cbar*V_inf) * [-11, 0, 5;
-                           0, -4.03*(St*lt^2)/(S*cbar^2), 0;
-                           1.7, 0, -11.5];
+CM_omega = (cbar/V_inf) * [-11 0 5;
+                           0 -4.03*(St*lt^2)/(S*cbar^2) 0;
+                           1.7 0 -11.5];
 CM_u = [-0.6 0 0.22;
         0 -3.1*St*lt/(S*cbar) 0;
         0 0 -0.63];
@@ -90,11 +90,11 @@ CM_AC_b = eta + CM_omega * omega_be_b + CM_u * [u(1); u(2); u(3)]; % body
 
 % ----- DIMENSIONAL MOMENTS -----
 MA_AC_b = cbar*q*S*CM_AC_b;
-MA_CG_b = MA_AC_b + cross(FA_b, (xCG - xAC));
+MA_CG_b = MA_AC_b + cross((xCG - xAC), FA_b);
 
 % ----- PROPULSION -----
-F_E1_b = [u(4) * m * g; 0; 0];
-F_E2_b = [u(5) * m * g; 0; 0];
+F_E1_b = [u(4) * m*g; 0; 0];
+F_E2_b = [u(5) * m*g; 0; 0];
 FE_b = F_E1_b + F_E2_b;
 
 mu1 = [xCG(1) - xEngL(1);       % displacement to CG of engine 1
@@ -111,13 +111,11 @@ M_CG_E_b = M_CG_E1_b + M_CG_E2_b;
 M_CG_b = M_CG_E_b + MA_CG_b;    % total moment about CG (engines + aero)
 
 % ----- GRAVITY EFFECTS -----
-g_b = [-g*sin(x(8));
+Fg_b = m * [-g*sin(x(8));
        g*cos(x(8))*sin(x(7));
        g*cos(x(8))*cos(x(7))];
-Fg_b = m * g_b;
 
-
-% ----- INERTIA MATRIX -----
+% ----- INERTIA MATRIX -----    
 Ib = m * [40.07 0 -2.0923;
          0 64 0;
          -2.0923 0 99.92];

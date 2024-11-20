@@ -20,7 +20,7 @@ u = [0;
     0.08;
     0.08];
 
-t_final = 200;
+t_final = 180;
 
 %% run model
 out = sim('RCAM_simulation.slx')
