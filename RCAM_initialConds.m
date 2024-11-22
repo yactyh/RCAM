@@ -14,8 +14,8 @@ x0 = [85; % approx 165 knots
     0.1; % approx 5.73 deg
     0];
 
-u = [0;
-    -0.1; % approx -5.73 deg
+u = [-0.1;
+    0; % approx -5.73 deg
     0;
     0.08;
     0.08];
