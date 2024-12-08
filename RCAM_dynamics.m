@@ -90,7 +90,7 @@ CM_AC_b = eta + CM_omega * omega_be_b + CM_u * [u(1); u(2); u(3)]; % body
 
 % ----- DIMENSIONAL MOMENTS -----
 MA_AC_b = cbar*q*S*CM_AC_b;
-MA_CG_b = MA_AC_b + cross((xCG - xAC), FA_b);
+MA_CG_b = MA_AC_b + cross((xAC - xCG), FA_b);
 
 % ----- PROPULSION -----
 F_E1_b = [u(4) * m*g; 0; 0];
