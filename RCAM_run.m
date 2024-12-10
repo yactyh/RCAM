@@ -3,7 +3,7 @@ clear
 clc
 close all
 
-%% define constants
+%% define initial conditions
 x0 = [85; % approx 165 knots
     0;
     0;
@@ -21,6 +21,8 @@ u = [0;
     0.08];
 
 t_final = 180;
+
+
 
 %% run model
 out = sim('RCAM_simulation.slx')
